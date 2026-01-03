@@ -1,93 +1,101 @@
-# micro-service-springboot-app
-This project is a production-ready microservices architecture built using Spring Boot, following modern backend development best practices. It demonstrates how independent services can communicate seamlessly while remaining loosely coupled and scalable. User Service –  Hotel Service – Rating Service – Stores and manages user ratings for hotels
 🏨 Microservices-Based Hotel Rating System
 
-A scalable and production-ready microservices application built using Spring Boot and Spring Cloud, demonstrating real-world microservices design patterns such as service discovery, inter-service communication, centralized configuration, API gateway, and fault tolerance.
+A robust, scalable, and production-oriented microservices application built using Spring Boot and Spring Cloud, showcasing service discovery, inter-service communication, and fault-tolerant design following industry best practices.
 
 📌 Project Overview
 
-This project simulates a Hotel Rating Platform where users can view hotels and submit ratings.
-The system is designed using independent microservices that communicate with each other while remaining loosely coupled and scalable.
+This project implements a distributed microservices architecture where independent services communicate dynamically using Eureka Service Registry and OpenFeign Clients, eliminating tight coupling and hard-coded service URLs.
 
-🧩 Microservices in This Project
+The application simulates a hotel rating platform, enabling users to rate hotels and retrieve aggregated information across multiple services.
+
+🧩 Microservices Included
 1️⃣ User Service
 
-Manages user information
+Manages user profiles and details
 
-Fetches user details along with hotel ratings
+Uses Feign Client to communicate with Rating and Hotel services
 
-Communicates with Rating and Hotel services
+Aggregates hotel and rating data dynamically via Eureka discovery
 
 2️⃣ Hotel Service
 
-Manages hotel data
+Manages hotel information and metadata
 
-Provides hotel details to other services
-
-Independent database and deployment
+Registers with Eureka Server for service discovery
 
 3️⃣ Rating Service
 
-Stores user ratings for hotels
+Stores and manages user ratings
 
-Provides rating data for aggregation
-
-Fully decoupled from User & Hotel services
+Provides rating data to User Service via Feign Client
 
 🏗️ System Architecture
-Client
-  |
-API Gateway
-  |
-----------------------------
-|        |               |
-User   Rating         Hotel
-Service Service       Service
 
-🔹 Architecture Highlights
+Eureka Server – Centralized service registry for dynamic service discovery
 
-API Gateway handles routing and request filtering
+OpenFeign Client – Declarative REST client for inter-service communication
 
-Eureka Server enables service discovery
+API Gateway – Single entry point for all client requests
 
-Feign Clients simplify inter-service communication
+Spring Cloud Config Server – Centralized configuration management
 
-Config Server centralizes configuration
+Resilience4J – Fault tolerance and resilience patterns
 
-Resilience4J provides fault tolerance
+All services register themselves with Eureka, and communication happens via service names, not fixed URLs.
 
 ⚙️ Key Features
 
-Microservices-based architecture
+Microservices architecture using Spring Boot
 
-RESTful APIs
+Service Registry & Discovery using Eureka Server
 
-Service Discovery with Eureka
+Inter-service communication using OpenFeign Clients
 
-API Gateway for centralized access
+Dynamic load-balanced service calls
 
-Inter-service communication using Feign
+API Gateway for request routing
 
-Circuit Breaker, Retry & Rate Limiter
+Centralized configuration with Config Server
 
-Database per service pattern
+Circuit Breaker, Retry & Rate Limiter (Resilience4J)
 
-Clean layered architecture
+Database-per-service pattern
 
-Cloud-ready and scalable design
+RESTful API design
+
+Clean layered architecture (Controller, Service, Repository)
+
+Scalable and cloud-ready design
 
 🛠️ Tech Stack
 Category	Technology
 Language	Java
-Framework	Spring Boot
-Cloud Tools	Spring Cloud
-Service Discovery	Eureka Server
-Communication	OpenFeign
-Gateway	Spring Cloud Gateway
-Resilience	Resilience4J
+Framework	Spring Boot, Spring Cloud
+Service Registry	Eureka Server
+Inter-Service Communication	OpenFeign
+API Gateway	Spring Cloud Gateway
+Configuration	Spring Cloud Config
 Database	MySQL
+Resilience	Resilience4J
 Build Tool	Maven
 Version Control	Git & GitHub
+🗂️ Project Structure
+├── user-service
+├── hotel-service
+├── rating-service
+├── api-gateway
+├── service-registry (Eureka Server)
+└── config-server
+
+
+Each service:
+
+Registers with Eureka Server
+
+Uses Feign Client for communication
+
+Has its own database and configuration
+
 🚀 How to Run the Project
 Prerequisites
 
@@ -99,74 +107,62 @@ MySQL
 
 Git
 
-Steps
+Startup Order
 
-Clone the repository
+Config Server
 
-git clone <repo-url>
+Service Registry (Eureka Server)
 
-
-Start Eureka Server
-
-Start Config Server
-
-Run services in order:
-
-User Service
-
-Rating Service
+API Gateway
 
 Hotel Service
 
-Start API Gateway
+Rating Service
 
-Access APIs through the Gateway
+User Service
 
-🎯 Use Case Example
+Eureka Dashboard
+http://localhost:8761
 
-Create users
+🔁 Service Communication Flow
 
-Add hotels
+Client sends request to API Gateway
 
-Submit ratings
+Gateway routes request to User Service
 
-Fetch user details with ratings and hotel info
+User Service uses Feign Client
 
-This mimics real enterprise backend systems.
+Feign resolves service location via Eureka
 
-📚 Learning Outcomes
+Rating & Hotel services respond
 
-Designing scalable microservices
+Aggregated response returned to client
 
-Implementing service discovery
+🎯 Learning Outcomes
 
-Handling inter-service communication
+Hands-on experience with Eureka-based service discovery
 
-Building fault-tolerant systems
+Implementing Feign-based service communication
 
-Applying Spring Cloud best practices
+Designing loosely coupled microservices
+
+Building fault-tolerant distributed systems
+
+Applying Spring Cloud patterns in real-world projects
 
 💼 Ideal For
 
-Backend developers learning microservices
+Java Backend Developers
 
-Spring Boot professionals
+Spring Boot Microservices Learners
 
-System design interviews
+Interview & Portfolio Projects
 
-Portfolio & resume projects
+Enterprise System Design Demonstrations
 
-✨ Future Enhancements
+📬 Contact
 
-Authentication & Authorization (JWT / OAuth2)
+Developer: Ravi Maurya
+Role: Java Full-Stack Developer
+Skills: Java, Spring Boot, Microservices, React, MySQL, AWS
 
-Docker & Kubernetes support
-
-Distributed tracing (Zipkin)
-
-CI/CD integration
-
-👨‍💻 Author
-
-Ravi Maurya
-Java | Spring Boot | Microservices | Full Stack Developer
