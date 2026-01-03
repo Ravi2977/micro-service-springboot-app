@@ -34,4 +34,5 @@ public class RatingController {
     public ResponseEntity<Rating> findAll(@PathVariable String ratingId){
         return new ResponseEntity<>(ratingService.findById(ratingId),HttpStatus.OK);
     }
+
 }
